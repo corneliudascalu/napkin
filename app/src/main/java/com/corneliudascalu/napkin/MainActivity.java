@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
         ButterKnife.inject(this, this);
         setSupportActionBar(primaryToolbar);
         primaryToolbar.setNavigationIcon(R.drawable.ic_ab_drawer);
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
 
