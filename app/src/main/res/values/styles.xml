@@ -7,6 +7,7 @@
         <!--<item name="navigationBarColor">@color/navigationBarColor</item>-->
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@color/windowBackgroundColor</item>
     </style>
     
     <style name="AppTheme" parent="AppTheme.Base">

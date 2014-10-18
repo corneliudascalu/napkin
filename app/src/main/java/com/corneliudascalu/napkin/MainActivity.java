@@ -1,8 +1,10 @@
 package com.corneliudascalu.napkin;
 
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,6 +14,8 @@ import butterknife.InjectView;
 
 public class MainActivity extends ActionBarActivity {
 
+    @InjectView(R.id.drawer)
+    DrawerLayout drawerLayout;
     @InjectView(R.id.primaryToolbar)
     Toolbar primaryToolbar;
 
@@ -21,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this, this);
         setSupportActionBar(primaryToolbar);
+        primaryToolbar.setNavigationIcon(R.drawable.ic_ab_drawer);
     }
 
 
@@ -33,14 +38,14 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(Gravity.START);
+                return true;
+            case R.id.action_settings:
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
