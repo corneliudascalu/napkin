@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (item.getItemId()) {
+        switch (id) {
             case android.R.id.home:
                 drawerLayout.openDrawer(Gravity.START);
                 return true;

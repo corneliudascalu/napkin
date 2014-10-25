@@ -1,16 +1,11 @@
 <resources>
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!--<item name="textColorPrimary">@color/textColorPrimary</item>-->
-        <!--<item name="navigationBarColor">@color/navigationBarColor</item>-->
-        <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@color/windowBackgroundColor</item>
-    </style>
-    
     <style name="AppTheme" parent="AppTheme.Base">
+        <!-- empty -->
+    </style>
+
+    <style name="AppTheme.ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/textColorSecondary</item>
     </style>
 
 </resources>
