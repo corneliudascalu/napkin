@@ -1,23 +1,41 @@
 package com.corneliudascalu.napkin;
 
+import com.corneliudascalu.napkin.base.App;
+import com.corneliudascalu.napkin.base.BaseInjectedActivity;
+import com.corneliudascalu.napkin.base.SampleSingleton;
+
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseInjectedActivity {
 
     @InjectView(R.id.drawer)
     DrawerLayout drawerLayout;
+
     @InjectView(R.id.primaryToolbar)
     Toolbar primaryToolbar;
+
+    @Inject
+    App app;
+
+    @Inject
+    @Named("napkin")
+    String napkin;
+
+    @Inject
+    SampleSingleton singleton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +45,10 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(primaryToolbar);
         primaryToolbar.setNavigationIcon(R.drawable.ic_ab_drawer);
         drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        Toast.makeText(this, "App injected " + (app != null), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Napkin injected " + napkin, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Singleton injected " + (singleton != null), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -50,5 +72,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected Object[] getModules() {
+        return new Object[]{new TestModule()};
     }
 }
