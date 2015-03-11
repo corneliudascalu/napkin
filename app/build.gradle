@@ -1,26 +1,67 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 22
+    buildToolsVersion "22"
 
     defaultConfig {
         applicationId "com.corneliudascalu.napkin"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.+'
-    compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
+    compile 'net.hockeyapp.android:HockeySDK:3.5.0-b.4'
+    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'joda-time:joda-time:2.7'
+    compile 'io.reactivex:rxandroid:0.24.0'
+
+    // espresso testing dependencies
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.0') {
+        exclude group: 'com.squareup', module: 'javawriter'
+    }
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+
+    // robolectric unit testing dependencies
+    testCompile 'junit:junit:4.12'
+    testCompile('org.mockito:mockito-core:1.9.5') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    testCompile('org.robolectric:robolectric:2.4') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    testCompile 'org.robolectric:robolectric-annotations:2.4'
+    testCompile('com.squareup.assertj:assertj-android:1.0.0') {
+        exclude group: 'com.android.support'
+    }
 }
